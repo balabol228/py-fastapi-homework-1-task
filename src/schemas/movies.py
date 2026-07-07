@@ -1,5 +1,6 @@
-from pydantic import BaseModel, Field
 from typing import List, Optional
+from pydantic import BaseModel
+
 
 class MovieDetailResponseSchema(BaseModel):
     id: int
@@ -19,6 +20,7 @@ class MovieDetailResponseSchema(BaseModel):
     class Config:
         orm_mode = True
         from_attributes = True
+
 
 class MovieListResponseSchema(BaseModel):
     movies: List[MovieDetailResponseSchema]
