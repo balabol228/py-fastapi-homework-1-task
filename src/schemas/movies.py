@@ -1,3 +1,4 @@
+from datetime import date
 from typing import List, Optional
 from pydantic import BaseModel
 
@@ -5,7 +6,7 @@ from pydantic import BaseModel
 class MovieDetailResponseSchema(BaseModel):
     id: int
     name: str
-    date: Optional[str] = None
+    date: Optional[date] = None
     score: float
     genre: str
     overview: str
@@ -13,8 +14,8 @@ class MovieDetailResponseSchema(BaseModel):
     orig_title: str
     status: str
     orig_lang: str
-    budget: int
-    revenue: int
+    budget: float
+    revenue: float
     country: str
 
     class Config:

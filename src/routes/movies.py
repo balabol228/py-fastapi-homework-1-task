@@ -63,7 +63,7 @@ async def get_movie_by_id(
 ):
     query = select(MovieModel).where(MovieModel.id == movie_id)
     result = await db.execute(query)
-    movie = result.scalar_or_none()
+    movie = result.scalar_one_or_none()
 
     if not movie:
         raise HTTPException(
