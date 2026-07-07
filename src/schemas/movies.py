@@ -1,12 +1,14 @@
 from datetime import date
 from typing import List, Optional
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 
 
 class MovieDetailResponseSchema(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
     id: int
     name: str
-    date: Optional[date] = None
+    date: date
     score: float
     genre: str
     overview: str
@@ -17,10 +19,6 @@ class MovieDetailResponseSchema(BaseModel):
     budget: float
     revenue: float
     country: str
-
-    class Config:
-        orm_mode = True
-        from_attributes = True
 
 
 class MovieListResponseSchema(BaseModel):

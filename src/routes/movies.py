@@ -1,4 +1,5 @@
 import math
+
 from fastapi import APIRouter, Depends, HTTPException, Query, status
 from sqlalchemy import select, func
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -34,7 +35,12 @@ async def get_movies(
         )
 
     offset = (page - 1) * per_page
-    movies_query = select(MovieModel).offset(offset).limit(per_page)
+    movies_query = (
+        select(MovieModel)
+        .order_by(MovieModel.id)
+        .offset(offset)
+        .limit(per_page)
+    )
     movies_result = await db.execute(movies_query)
     movies = movies_result.scalars().all()
 
